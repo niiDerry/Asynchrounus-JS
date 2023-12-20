@@ -34,9 +34,9 @@ const getCountryData = function (country) {
     countriesContainer.insertAdjacentHTML('beforeend', html);
     countriesContainer.style.opacity = 1;
   });
-};
-
-getCountryData('ghana');
+  
+  getCountryData('ghana');
+};*/
 
 const renderCountry = function (data, className = '') {
   const html = `
@@ -57,6 +57,7 @@ const renderCountry = function (data, className = '') {
   countriesContainer.insertAdjacentHTML('beforeend', html);
   countriesContainer.style.opacity = 1;
 };
+/*
 const getCountryAndNeighbor = function (country) {
   // AJAX call country 1
   const request = new XMLHttpRequest();
@@ -77,6 +78,7 @@ const getCountryAndNeighbor = function (country) {
 
     if (!neighbor) return;
 
+    // CALL BACK HELL
     // AJAX call country 2
     const request2 = new XMLHttpRequest();
     request2.open('GET', `https://restcountries.com/v3.1/alpha/${neighbor}`);
@@ -93,3 +95,35 @@ const getCountryAndNeighbor = function (country) {
 
 getCountryAndNeighbor('usa');
 */
+
+// const request = new XMLHttpRequest();
+// request.open('GET', `https://restcountries.com/v3.1/name/${country}`);
+// request.send();
+
+// const request = fetch('https://restcountries.com/v3.1/name/ghana');
+// console.log(request);
+
+// CONSUMING PROMISES
+// const getCountryData = function (country) {
+//   fetch(`https://restcountries.com/v3.1/name/${country}`)
+//     .then(function (response) {
+//       console.log(response);
+//       return response.json();
+//     })
+//     .then(function (data) {
+//       console.log(data);
+//       renderCountry(data[0]);
+//     });
+// };
+// getCountryData('usa');
+
+///////////////////////////////////////////////
+// simplified
+const getCountryData = function (country) {
+  fetch(`https://restcountries.com/v3.1/name/${country}`)
+    .then(response => response.json())
+    .then(data => renderCountry(data[0]));
+};
+getCountryData('usa');
+
+// CHAINING PROMISES
